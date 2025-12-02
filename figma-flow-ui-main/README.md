@@ -2,72 +2,77 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/ee78ff80-a46f-460b-b510-b4dacd2012ee
+**URL**: https://na-mao.vercel.app/
 
-## How can I edit this code?
+# NaMão — protótipo de app de receitas
 
-There are several ways of editing your application.
+Este repositório contém um protótipo frontend (React + Vite + TypeScript) chamado **NaMão** — um app simples para descobrir receitas com os ingredientes que você tem em casa. O projeto é intencionalmente leve e voltado para demonstração / UI mock.
 
-**Use Lovable**
+Principais características
+- Lista de receitas mockadas (em `src/data/mockData.ts`).
+- Busca por ingredientes: a tela `Home` passa os ingredientes para `ReceitasEncontradas` via `location.state` e a página filtra receitas por substring nos ingredientes.
+- Perfil do usuário persistido no `localStorage` (chave `namao_user_profile`).
+- Receitas salvas persistidas no `localStorage` (chave `namao_saved_recipes`).
+- Favicon definido programaticamente usando `src/assets/hand-flame-icon.png` (em `src/main.tsx`).
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ee78ff80-a46f-460b-b510-b4dacd2012ee) and start prompting.
+Tech stack
+- Vite
+- React + TypeScript
+- Tailwind CSS
+- React Router
+- TanStack React Query
 
-Changes made via Lovable will be committed automatically to this repo.
+Estrutura importante
+- `src/pages/` — páginas da aplicação (Home, Perfil, Salvas, Receita, etc.).
+- `src/data/mockData.ts` — receitas mock e dados iniciais.
+- `src/lib/userProfile.ts` — helper para persistir o perfil no localStorage.
+- `src/lib/recipes.ts` — helper para gerenciar ids de receitas salvas no localStorage.
+- `src/types/assets.d.ts` — declarações mínimas para importar imagens (png/jpg/svg).
 
-**Use your preferred IDE**
+Scripts
+- Instalar dependências:
+	```bash
+	npm install
+	```
+- Rodar em desenvolvimento:
+	```bash
+	npm run dev
+	```
+- Build para produção:
+	```bash
+	npm run build
+	```
+- Pré-visualizar build:
+	```bash
+	npm run preview
+	```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Deploy (Vercel)
+- Preset: `Vite`
+- Root Directory: `figma-flow-ui-main` (este projeto vive dentro dessa subpasta)
+- Install Command: `npm install`
+- Build Command: `npm run build`
+- Output Directory: `dist`
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Para suportar roteamento do lado cliente (react-router) sem 404s no Vercel, recomendo adicionar `figma-flow-ui-main/vercel.json` com um rewrite para `index.html`:
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```json
+{
+	"rewrites": [
+		{ "source": "(.*)", "destination": "/index.html" }
+	]
+}
 ```
 
-**Edit a file directly in GitHub**
+Notas úteis
+- Se você removeu `src/vite-env.d.ts`, o projeto pode precisar de declarações mínimas para assets — por isso há `src/types/assets.d.ts` no projeto.
+- As chaves do localStorage usadas são:
+	- `namao_user_profile` — objeto do perfil do usuário (nome, email, preferências)
+	- `namao_saved_recipes` — array de ids de receitas salvas
+- Para trocar o favicon estaticamente prefira colocar a imagem em `public/` e editar `index.html`.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Contribuição / desenvolvimento
+- Este é um protótipo; sinta-se à vontade para abrir PRs com melhorias de UI, adicionar normalização na busca (remoção de quantidades), ou transformar a persistência em um contexto React para reatividade imediata.
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/ee78ff80-a46f-460b-b510-b4dacd2012ee) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Licença
+- Código fornecido como exemplo/demonstração (sem licença explícita).
