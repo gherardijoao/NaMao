@@ -41,32 +41,3 @@ Scripts
 	npm run preview
 	```
 
-Deploy (Vercel)
-- Preset: `Vite`
-- Root Directory: `figma-flow-ui-main` (este projeto vive dentro dessa subpasta)
-- Install Command: `npm install`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-Para suportar roteamento do lado cliente (react-router) sem 404s no Vercel, recomendo adicionar `figma-flow-ui-main/vercel.json` com um rewrite para `index.html`:
-
-```json
-{
-	"rewrites": [
-		{ "source": "(.*)", "destination": "/index.html" }
-	]
-}
-```
-
-Notas úteis
-- Se você removeu `src/vite-env.d.ts`, o projeto pode precisar de declarações mínimas para assets — por isso há `src/types/assets.d.ts` no projeto.
-- As chaves do localStorage usadas são:
-	- `namao_user_profile` — objeto do perfil do usuário (nome, email, preferências)
-	- `namao_saved_recipes` — array de ids de receitas salvas
-- Para trocar o favicon estaticamente prefira colocar a imagem em `public/` e editar `index.html`.
-
-Contribuição / desenvolvimento
-- Este é um protótipo; sinta-se à vontade para abrir PRs com melhorias de UI, adicionar normalização na busca (remoção de quantidades), ou transformar a persistência em um contexto React para reatividade imediata.
-
-Licença
-- Código fornecido como exemplo/demonstração (sem licença explícita).
